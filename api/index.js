@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 
 import { db } from './config/db.js';
 import errorHandler from './middlewares/errorHandler.js';
+import authRoute from './routes/authRoute.js';
 
 const app = express();
 
@@ -12,6 +13,8 @@ app.use(express.json({ limit: '2mb' }));
 app.use(cookieParser());
 
 db();
+
+app.use('/api/auth', authRoute);
 
 app.use(errorHandler);
 
