@@ -1,4 +1,5 @@
 import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 import User from '../models/userModel.js';
 import { createError } from '../utils/createError.js';
@@ -28,4 +29,23 @@ const register = async (req, res, next) => {
   }
 };
 
-export { register };
+const login = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  try {
+    const validUser = await User.findOne({ email });
+
+    if (!validUser || !bcryptjs.compareSync(password, validUser.password)) {
+      return next(createError(404, 'Invalid email or password!'));
+    }
+
+    const token = jwt.sign({ id: validUser._id, isAdmin: validUser.isAdmin }, process.env.JWT_SECRET);
+
+    const { password: pass, ...rest } = validUser._doc;
+    res.status(200).cookie('access_token', token, { httpOnly: true }).json(rest);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { register, login };
