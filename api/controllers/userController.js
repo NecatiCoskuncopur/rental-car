@@ -1,5 +1,8 @@
+import bcryptjs from 'bcryptjs';
+
 import User from '../models/userModel.js';
 import { createError } from '../utils/createError.js';
+import { pickAllowedKeys } from '../utils/pickAllowedKeys.js';
 
 const getUsers = async (req, res, next) => {
   if (!req.user?.isAdmin) {
@@ -37,4 +40,40 @@ const getUsers = async (req, res, next) => {
   }
 };
 
-export { getUsers };
+const updateUser = async (req, res, next) => {
+  if (req.user.id !== req.params.userId) {
+    return next(createError(403, 'You are not allowed to update this user'));
+  }
+
+  if (req.body.password) {
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return next(createError(404, 'User not found'));
+    }
+
+    const isMatch = await bcryptjs.compare(req.body.oldPassword, user.password);
+    if (!isMatch) {
+      return next(createError(403, 'Old password is incorrect'));
+    }
+
+    if (req.body.password.length < 8 || req.body.password.length > 64) {
+      return next(createError(400, 'Password must be between 8 and 64 characters long.'));
+    }
+
+    req.body.password = bcryptjs.hashSync(req.body.password, 10);
+  }
+
+  const allowedUpdates = ['name', 'surname', 'dateofBirth', 'email', 'password'];
+  const updates = pickAllowedKeys(req.body, allowedUpdates);
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(req.params.userId, { $set: updates }, { new: true, runValidators: true, context: 'query' });
+
+    const { password, ...rest } = updatedUser._doc;
+    res.status(200).json(rest);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getUsers, updateUser };
