@@ -48,4 +48,17 @@ const login = async (req, res, next) => {
   }
 };
 
-export { register, login };
+const logout = async (req, res, next) => {
+  try {
+    res
+      .clearCookie('access_token', {
+        httpOnly: true,
+      })
+      .status(200)
+      .json({ message: 'User has been signed out' });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { register, login, logout };
