@@ -1,5 +1,6 @@
 import Post from '../models/postModel.js';
 import { createError } from '../utils/createError.js';
+import { pickAllowedKeys } from '../utils/pickAllowedKeys.js';
 
 const getPosts = async (req, res, next) => {
   try {
@@ -55,4 +56,24 @@ const createPost = async (req, res, next) => {
   }
 };
 
-export { getPosts, createPost };
+const updatePost = async (req, res, next) => {
+  if (!req.user.isAdmin) {
+    return next(createError(403, 'You are not allowed to update this post'));
+  }
+
+  const allowedUpdates = ['title', 'content', 'image'];
+  const updates = pickAllowedKeys(req.body, allowedUpdates);
+
+  if (!req.body.image) {
+    delete updates.image;
+  }
+
+  try {
+    const updatedPost = await Post.findByIdAndUpdate(req.params.postId, { $set: updates }, { new: true, runValidators: true });
+    res.status(200).json(updatedPost);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getPosts, createPost, updatePost };
