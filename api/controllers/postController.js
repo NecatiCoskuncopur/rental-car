@@ -76,4 +76,17 @@ const updatePost = async (req, res, next) => {
   }
 };
 
-export { getPosts, createPost, updatePost };
+const deletePost = async (req, res, next) => {
+  if (!req.user.isAdmin) {
+    return next(createError(403, 'You are not allowed to delete this post'));
+  }
+
+  try {
+    await Post.findByIdAndDelete(req.params.postId);
+    res.status(200).json('The post has been deleted');
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getPosts, createPost, updatePost, deletePost };
