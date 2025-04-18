@@ -1,10 +1,11 @@
 import express from 'express';
 
 import { verifyUser } from '../middlewares/verifyUser.js';
+import { getPosts } from '../controllers/postController.js';
 
 const router = express.Router();
 
-router.get('/getPosts', (req, res) => {});
+router.get('/getPosts', getPosts);
 
 router.post('/createPost', verifyUser, (req, res) => {});
 
