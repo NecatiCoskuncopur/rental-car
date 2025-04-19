@@ -4,13 +4,13 @@ import mongoosePaginate from 'mongoose-paginate-v2';
 const bookingSchema = new mongoose.Schema(
   {
     user: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
 
     vehicle: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Vehicle',
       required: true,
     },
