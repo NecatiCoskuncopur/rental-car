@@ -165,4 +165,17 @@ const updateVehicle = async (req, res, next) => {
   }
 };
 
-export { getVehicles, createVehicle, updateVehicle };
+const deleteVehicle = async (req, res, next) => {
+  if (!req.user.isAdmin) {
+    return next(createError(403, 'You are not allowed to delete this vehicle'));
+  }
+
+  try {
+    await Vehicle.findByIdAndDelete(req.params.vehicleId);
+    res.status(200).json('The vehicle has been deleted');
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getVehicles, createVehicle, updateVehicle, deleteVehicle };
