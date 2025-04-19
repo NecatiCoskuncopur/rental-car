@@ -1,5 +1,6 @@
 import Vehicle from '../models/vehicleModel.js';
 import { createError } from '../utils/createError.js';
+import { pickAllowedKeys } from '../utils/pickAllowedKeys.js';
 
 const getVehicles = async (req, res, next) => {
   try {
@@ -144,4 +145,24 @@ const createVehicle = async (req, res, next) => {
   }
 };
 
-export { getVehicles, createVehicle };
+const updateVehicle = async (req, res, next) => {
+  if (!req.user.isAdmin) {
+    return next(createError(403, 'You are not allowed to update this vehicle'));
+  }
+
+  const allowedUpdates = ['brand', 'model', 'price', 'image', 'vehicleType', 'doors', 'passengers', 'transmissionType', 'fuelType', 'minAge'];
+  const updates = pickAllowedKeys(req.body, allowedUpdates);
+
+  if (!req.body.image) {
+    delete updates.image;
+  }
+
+  try {
+    const updatedVehicle = await Vehicle.findByIdAndUpdate(req.params.vehicleId, { $set: updates }, { new: true, runValidators: true, context: 'query' });
+    res.status(200).json(updatedVehicle);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getVehicles, createVehicle, updateVehicle };
