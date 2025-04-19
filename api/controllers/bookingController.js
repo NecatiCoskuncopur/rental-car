@@ -1,4 +1,5 @@
 import Booking from '../models/bookingModel.js';
+import Vehicle from '../models/vehicleModel.js';
 import { createError } from '../utils/createError.js';
 
 const getBookings = async (req, res, next) => {
@@ -37,4 +38,58 @@ const getBookings = async (req, res, next) => {
   }
 };
 
-export { getBookings };
+const createBooking = async (req, res, next) => {
+  const { vehicleId, startDate, endDate } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const vehicle = await Vehicle.findById(vehicleId);
+    if (!vehicle) {
+      return next(createError(404, 'Vehicle not found'));
+    }
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (isNaN(start) || isNaN(end)) {
+      return next(createError(400, 'Invalid date format'));
+    }
+
+    if (end <= start) {
+      return next(createError(400, 'End date must be later than start date'));
+    }
+
+    const overlappingBookings = await Booking.find({
+      vehicleId,
+      $or: [
+        {
+          startDate: { $lte: end },
+          endDate: { $gte: start },
+        },
+      ],
+    });
+
+    if (overlappingBookings.length > 0) {
+      return next(createError(400, 'The vehicle is already booked for the selected dates.'));
+    }
+
+    const dayDifference = Math.ceil((end - start) / (1000 * 3600 * 24));
+    const totalPrice = vehicle.price * dayDifference;
+
+    const newBooking = new Booking({
+      user: userId,
+      vehicle: vehicleId,
+      startDate,
+      endDate,
+      totalPrice,
+      status: 'pending',
+    });
+
+    const savedBooking = await newBooking.save();
+    res.status(201).json(savedBooking);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getBookings, createBooking };
