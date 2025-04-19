@@ -1,10 +1,11 @@
 import express from 'express';
 
 import { verifyUser } from '../middlewares/verifyUser.js';
+import { getVehicles } from '../controllers/vehicleController.js';
 
 const router = express.Router();
 
-router.get('/getVehicles', (req, res) => {});
+router.get('/getVehicles', getVehicles);
 
 router.post('/createVehicle', verifyUser, (req, res) => {});
 
