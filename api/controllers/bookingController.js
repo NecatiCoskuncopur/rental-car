@@ -60,7 +60,8 @@ const createBooking = async (req, res, next) => {
     }
 
     const overlappingBookings = await Booking.find({
-      vehicleId,
+      vehicle: vehicleId,
+      status: { $in: ['pending', 'confirmed'] },
       $or: [
         {
           startDate: { $lte: end },
