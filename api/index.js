@@ -1,9 +1,8 @@
-import dotenv from 'dotenv';
-dotenv.config();
 import express from 'express';
 import cookieParser from 'cookie-parser';
 
 import { db } from './config/db.js';
+import { config } from './config/config.js';
 import errorHandler from './middlewares/errorHandler.js';
 import authRoute from './routes/authRoute.js';
 import bookingRoute from './routes/bookingRoute.js';
@@ -28,6 +27,6 @@ app.use('/api/vehicle', vehicleRoute);
 
 app.use(errorHandler);
 
-app.listen(5000, () => {
-  console.log('Server running on port 5000');
+app.listen(config.port, () => {
+  console.log(`Server running on port ${config.port}`);
 });

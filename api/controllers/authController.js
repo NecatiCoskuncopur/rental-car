@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import User from '../models/userModel.js';
 import { createError } from '../utils/createError.js';
+import { config } from '../config/config.js';
 
 const register = async (req, res, next) => {
   const { name, surname, dateofBirth, email, password } = req.body;
@@ -39,7 +40,7 @@ const login = async (req, res, next) => {
       return next(createError(404, 'Invalid email or password!'));
     }
 
-    const token = jwt.sign({ id: validUser._id, isAdmin: validUser.isAdmin }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: validUser._id, isAdmin: validUser.isAdmin }, config.jwtSecret);
 
     const { password: pass, ...rest } = validUser._doc;
     res.status(200).cookie('access_token', token, { httpOnly: true }).json(rest);

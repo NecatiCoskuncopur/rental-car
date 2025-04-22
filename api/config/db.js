@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
+import { config } from './config.js';
 
 export const db = () => {
   return new Promise((resolve, reject) => {
     mongoose
-      .connect(process.env.MONGO_URI)
+      .connect(config.mongoUri)
       .then(() => {
         console.log('DB Connected');
         return resolve(true);

@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 import { createError } from '../utils/createError.js';
+import { config } from '../config/config.js';
 
 /**
  * Middleware function to verify a JSON Web Token (JWT) from cookies and check for admin privileges.
@@ -18,7 +19,7 @@ export const verifyUser = (req, res, next) => {
     return next(createError(401, 'Unauthorized'));
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, config.jwtSecret, (err, user) => {
     if (err) {
       return next(createError(401, 'Unauthorized'));
     }
