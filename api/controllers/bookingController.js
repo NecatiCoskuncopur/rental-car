@@ -92,4 +92,44 @@ const createBooking = async (req, res, next) => {
   }
 };
 
-export { getBookings, createBooking };
+const updateBooking = async (req, res, next) => {
+  const { status } = req.body;
+  const { bookingId } = req.params;
+  const userId = req.user.id;
+  const isAdmin = req.user.isAdmin;
+  const validStatuses = ['confirmed', 'cancelled'];
+
+  if (!status || !validStatuses.includes(status)) {
+    return next(createError(400, 'Invalid status value. Must be "confirmed" or "cancelled"'));
+  }
+
+  try {
+    const booking = await Booking.findById(bookingId);
+    if (!booking) {
+      return next(createError(404, 'Booking not found'));
+    }
+
+    const isOwner = String(booking.user?._id || booking.user) === String(userId);
+    const isBookingPast = new Date(booking.startDate) <= new Date();
+
+    if (isBookingPast) {
+      return next(createError(403, 'You cannot update a booking that has already started or is in the past.'));
+    }
+
+    if (isAdmin) {
+      const updatedBooking = await Booking.findByIdAndUpdate(bookingId, { $set: { status } }, { new: true });
+      return res.status(200).json(updatedBooking);
+    }
+
+    if (isOwner && status === 'cancelled') {
+      const updatedBooking = await Booking.findByIdAndUpdate(bookingId, { $set: { status: 'cancelled' } }, { new: true });
+      return res.status(200).json(updatedBooking);
+    }
+
+    return next(createError(403, 'You are not allowed to update this booking'));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getBookings, createBooking, updateBooking };
