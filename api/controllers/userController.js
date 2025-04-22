@@ -33,7 +33,7 @@ const getUsers = async (req, res, next) => {
     };
 
     const result = await User.paginate(queryConditions, options);
-    result.users = result.users.map(({ password, ...rest }) => rest);
+
     res.status(200).json(result);
   } catch (error) {
     next(error);
@@ -69,8 +69,8 @@ const updateUser = async (req, res, next) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(req.params.userId, { $set: updates }, { new: true, runValidators: true, context: 'query' });
 
-    const { password, ...rest } = updatedUser._doc;
-    res.status(200).json(rest);
+    const result = updatedUser._doc;
+    res.status(200).json(result);
   } catch (error) {
     next(error);
   }

@@ -33,7 +33,7 @@ const login = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
-    const validUser = await User.findOne({ email });
+    const validUser = await User.findOne({ email }).select('+password');
 
     if (!validUser || !bcryptjs.compareSync(password, validUser.password)) {
       return next(createError(404, 'Invalid email or password!'));
