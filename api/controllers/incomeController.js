@@ -37,4 +37,41 @@ const getMonthlyIncome = async (req, res, next) => {
   }
 };
 
-export { getMonthlyIncome };
+const getYearlyIncome = async (req, res, next) => {
+  try {
+    if (!req.user.isAdmin) {
+      return next(createError(403, 'You are not allowed to see income'));
+    }
+
+    const yearlyIncome = await Booking.aggregate([
+      {
+        $match: {
+          status: 'confirmed',
+        },
+      },
+      {
+        $project: {
+          year: {
+            $year: { $toDate: '$startDate' },
+          },
+          totalPrice: 1,
+        },
+      },
+      {
+        $group: {
+          _id: '$year',
+          totalIncome: { $sum: '$totalPrice' },
+        },
+      },
+      {
+        $sort: { _id: 1 },
+      },
+    ]);
+
+    res.status(200).json(yearlyIncome);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getMonthlyIncome, getYearlyIncome };
