@@ -1,5 +1,6 @@
 import bcryptjs from 'bcryptjs';
 
+import Booking from '../models/bookingModel.js';
 import User from '../models/userModel.js';
 import { createError } from '../utils/createError.js';
 import { pickAllowedKeys } from '../utils/pickAllowedKeys.js';
@@ -34,6 +35,40 @@ const getUsers = async (req, res, next) => {
 
     const result = await User.paginate(queryConditions, options);
 
+    res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getUserBooking = async (req, res, next) => {
+  const userId = req.user.id;
+
+  try {
+    const { page = 1, limit = 10, order = 'desc' } = req.query;
+    const queryConditions = { user: userId };
+
+    const options = {
+      page: parseInt(page),
+      limit: parseInt(limit),
+      sort: { updatedAt: order === 'asc' ? 1 : -1 },
+      populate: ['vehicle'],
+      lean: true,
+      customLabels: {
+        totalDocs: 'totalBookings',
+        docs: 'bookings',
+        limit: 'perPage',
+        page: 'currentPage',
+        totalPages: 'totalPages',
+        nextPage: 'next',
+        prevPage: 'prev',
+        pagingCounter: 'pageStartIndex',
+        hasPrevPage: 'hasPrev',
+        hasNextPage: 'hasNext',
+      },
+    };
+
+    const result = await Booking.paginate(queryConditions, options);
     res.status(200).json(result);
   } catch (error) {
     next(error);
@@ -88,4 +123,4 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-export { getUsers, updateUser, deleteUser };
+export { getUsers, getUserBooking, updateUser, deleteUser };
