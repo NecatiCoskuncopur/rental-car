@@ -1,3 +1,4 @@
+import './cron/autoCancelBookings.js';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 
