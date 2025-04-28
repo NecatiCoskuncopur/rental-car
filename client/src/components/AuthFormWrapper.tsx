@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 import theme from '@/theme';
 
@@ -8,10 +10,26 @@ type AuthFormProps = {
 };
 
 const AuthFormWrapper: React.FC<AuthFormProps> = ({ children }) => {
+  const pathname = usePathname();
+  const isLogin = pathname === '/login';
+
   return (
     <Wrapper>
       <LogoWrapper>logo</LogoWrapper>
       {children}
+      <FormFooter>
+        {isLogin ? (
+          <>
+            <Link href="/register">Don't you have an account? Register</Link>
+            <Link href="/forgotPassword">Forgot password?</Link>
+          </>
+        ) : (
+          <>
+            <Link href="/login">Already a member? Login</Link>
+            <Link href="/forgotPassword">Forgot password?</Link>
+          </>
+        )}
+      </FormFooter>
     </Wrapper>
   );
 };
@@ -40,4 +58,14 @@ const LogoWrapper = styled.div`
   position: absolute;
   top: 20px;
   left: 20px;
+`;
+
+const FormFooter = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media ${theme.device.tablet} {
+    flex-direction: column;
+    gap: ${theme.spacing.$3};
+  }
 `;
