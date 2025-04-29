@@ -19,7 +19,7 @@ const AuthFormWrapper: React.FC<AuthFormProps> = ({ children }) => {
     <Wrapper>
       <LogoWrapper>logo</LogoWrapper>
       {children}
-      <FormFooter>
+      <FormFooter isLogin={isLogin}>
         {isLogin ? (
           <>
             <Link href="/register">Don't you have an account? Register</Link>
@@ -62,10 +62,15 @@ const LogoWrapper = styled.div`
   left: 20px;
 `;
 
-const FormFooter = styled.footer`
+const FormFooter = styled.footer.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isLogin',
+})<{ isLogin: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  max-width: ${({ isLogin }) => (isLogin ? '450px' : '600px')};
+
   @media ${theme.device.tablet} {
     flex-direction: column;
     gap: ${theme.spacing.$3};
