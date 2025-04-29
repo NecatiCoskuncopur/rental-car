@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { Typography } from 'antd';
 
 import theme from '@/theme';
+
+const { Link } = Typography;
 
 type AuthFormProps = {
   children: React.ReactNode;
