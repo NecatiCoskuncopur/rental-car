@@ -1,10 +1,11 @@
-import { ContactMap } from '@/components';
+import { ContactForm, ContactMap } from '@/components';
 import { Footer, Header } from '@/layout';
 import React from 'react';
 
 const Contact = () => {
   return (
     <>
+      <ContactForm />
       <ContactMap />
     </>
   );

@@ -39,6 +39,15 @@ const emailValidations = (form: FormInstance): RuleObject[] => [
   },
 ];
 
+const messageValidations: RuleObject[] = [
+  { required: true, message: 'Message cannot be empty' },
+  { max: 300, message: 'Message must be at most 300 characters' },
+  {
+    pattern: /^[a-zA-ZğüşöçĞÜŞİÖÇ\sı0-9]+$/,
+    message: 'Message can only contain letters, numbers, and spaces',
+  },
+];
+
 const nameValidations: RuleObject[] = [
   { required: true, message: 'Name is required' },
   { min: 3, message: 'Name must be at least 3 characters' },
@@ -79,6 +88,14 @@ const passwordConfirmValidations = (form: FormInstance): RuleObject[] => [
   },
 ];
 
+const phoneNumberValidations = [
+  { required: true, message: 'Phone number is required' },
+  {
+    pattern: /^\d{10}$/,
+    message: 'Phone number must consist of 10 digits',
+  },
+];
+
 const surnameValidations: RuleObject[] = [
   { required: true, message: 'Surname is required' },
   { min: 3, message: 'Surname must be at least 3 characters' },
@@ -97,4 +114,13 @@ const surnameValidations: RuleObject[] = [
   },
 ];
 
-export { birthDateValidations, emailValidations, nameValidations, passwordValidations, passwordConfirmValidations, surnameValidations };
+export {
+  birthDateValidations,
+  emailValidations,
+  messageValidations,
+  nameValidations,
+  passwordValidations,
+  passwordConfirmValidations,
+  phoneNumberValidations,
+  surnameValidations,
+};
