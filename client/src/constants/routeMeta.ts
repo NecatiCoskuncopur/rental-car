@@ -1,5 +1,6 @@
 const routeMeta: IRouteMeta = {
   '/about': { title: 'About Us', breadcrumb: ['Home', 'About Us'] },
+  '/contact': { title: 'Contact Us', breadcrumb: ['Home', 'Contact Us'] },
   '/privacyPolicy': { title: 'Privacy Policy', breadcrumb: ['Home', 'Privacy Policy'] },
   '/terms': { title: 'Terms & Conditions', breadcrumb: ['Home', 'Terms & Conditions'] },
 };
