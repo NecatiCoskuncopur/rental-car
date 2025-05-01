@@ -9,10 +9,7 @@ import { routeMeta } from '@/constants';
 const Banner = () => {
   const pathname = usePathname();
 
-  const meta = (routeMeta as Record<string, { title: string; breadcrumb: string[] }>)[pathname] || {
-    title: 'Sayfa',
-    breadcrumb: ['Anasayfa'],
-  };
+  const meta = (routeMeta as Record<string, { title: string; breadcrumb: string[] }>)[pathname];
 
   const generateBreadcrumbPaths = () => {
     const pathParts = pathname.split('/').filter(Boolean);
