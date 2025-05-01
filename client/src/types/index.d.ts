@@ -10,3 +10,10 @@ interface ICurrentUser {
   error: string | null;
   loading: boolean;
 }
+
+interface IRouteMeta {
+  [path: string]: {
+    title: string;
+    breadcrumb: string[];
+  };
+}

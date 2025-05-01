@@ -9,7 +9,7 @@ import { routeMeta } from '@/constants';
 const Banner = () => {
   const pathname = usePathname();
 
-  const meta = (routeMeta as Record<string, { title: string; breadcrumb: string[] }>)[pathname];
+  const meta = routeMeta[pathname];
 
   const generateBreadcrumbPaths = () => {
     const pathParts = pathname.split('/').filter(Boolean);
