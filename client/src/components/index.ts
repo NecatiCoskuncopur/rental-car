@@ -1,5 +1,6 @@
 export { default as AuthFormWrapper } from './AuthFormWrapper';
 export { default as Button } from './Button';
+export { default as CommonQuestions } from './CommonQuestions';
 export { default as ContactDetail } from './Contact/ContactDetail';
 export { default as ContactForm } from './Contact/ContactForm';
 export { default as ContactMap } from './Contact/ContactMap';
