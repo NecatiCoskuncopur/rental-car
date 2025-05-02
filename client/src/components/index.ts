@@ -7,3 +7,4 @@ export { default as Container } from './Container';
 export { default as FormGrid } from './FormGrid';
 export { default as InfoPage } from './InfoPage';
 export { default as Loader } from './Loader';
+export { default as SectionHeading } from './SectionHeading';
