@@ -8,3 +8,4 @@ export { default as FormGrid } from './FormGrid';
 export { default as InfoPage } from './InfoPage';
 export { default as Loader } from './Loader';
 export { default as SectionHeading } from './SectionHeading';
+export { default as WhyChooseUs } from './WhyChooseUs';

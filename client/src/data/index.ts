@@ -4,3 +4,4 @@ export { default as headerData } from './headerData';
 export { default as privacyPolicyData } from './privacyPolicyData';
 export { default as socialMediaData } from './socialMediaData';
 export { default as termsData } from './termsData';
+export { default as whyChooseUsData } from './whyChooseUsData';
