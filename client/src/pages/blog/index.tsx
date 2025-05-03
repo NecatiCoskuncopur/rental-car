@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import theme from '@/theme';
 import { useFetchData } from '@/hooks';
 import { Footer, Header } from '@/layout';
-import { Container, ErrorScreen, OverlayLoader, Paginate, PaginateNextButton, PaginatePrevButton, PostCard } from '@/components';
+import { Container, ErrorScreen, OverlayLoader, Paginate, PaginateNextButton, PaginatePrevButton, PostCard, TopArticle } from '@/components';
 
 const Blog = () => {
   const router = useRouter();
@@ -46,7 +46,9 @@ const Blog = () => {
                 />
               ))}
             </List>
-            <Aside>Aside</Aside>
+            <Aside>
+              <TopArticle posts={postsData?.posts || []} />
+            </Aside>
           </Wrapper>
           {totalPages > 1 && (
             <Paginate
