@@ -17,6 +17,7 @@ export { default as Paginate } from './Paginate';
 export { default as PaginateNextButton } from './PaginateNextButton';
 export { default as PaginatePrevButton } from './PaginatePrevButton';
 export { default as PostCard } from './Post/PostCard';
+export { default as ScrollToTopButton } from './ScrollToTopButton';
 export { default as SectionHeading } from './SectionHeading';
 export { default as TopArticle } from './Post/TopArticle';
 export { default as WhyChooseUs } from './WhyChooseUs';

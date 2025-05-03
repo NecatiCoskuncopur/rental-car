@@ -5,8 +5,9 @@ import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from 'react-toastify';
 
-import { Loader } from '@/components';
+import { Loader, ScrollToTopButton } from '@/components';
 import { routeMeta } from '@/constants';
 import GlobalStyles from '@/GlobalStyles';
 import { persistor, store } from '@/redux/store';
@@ -36,6 +37,11 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
             </Head>
             <Loader />
             <Component {...pageProps} />
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+            />
+            <ScrollToTopButton />
           </>
         )}
       </PersistGate>
