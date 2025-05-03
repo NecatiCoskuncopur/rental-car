@@ -77,6 +77,7 @@ const theme = {
     darkerGray: '#2F2F2F',
     almostBlack: '#212121',
     extraDarkGray: '#201F1D',
+    coolGray: '#DEE2E7',
 
     // Backgrounds & Neutrals
     bgLight: '#F8F9FA',
