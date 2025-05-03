@@ -1,18 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import theme from '@/theme';
 import { routeMeta } from '@/constants';
 
 const Banner = () => {
-  const pathname = usePathname();
+  const router = useRouter();
+  const { asPath } = router;
 
-  const meta = routeMeta[pathname];
+  const meta = routeMeta[asPath] || routeMeta['/blog/[slug]'] || { title: 'Blog Detail', breadcrumb: ['Home', 'Blog', 'Blog Detail'] };
 
   const generateBreadcrumbPaths = () => {
-    const pathParts = pathname.split('/').filter(Boolean);
+    if (!asPath) return [];
+    const pathParts = asPath.split('/').filter(Boolean);
     const paths = ['/'];
     for (let i = 0; i < pathParts.length; i++) {
       const segment = '/' + pathParts.slice(0, i + 1).join('/');
@@ -55,6 +57,7 @@ const Banner = () => {
 
 export default Banner;
 
+// Styled Components
 const Container = styled.section`
   background-color: ${theme.colors.extraDarkGray};
   padding: ${theme.spacing.$13} 0;
