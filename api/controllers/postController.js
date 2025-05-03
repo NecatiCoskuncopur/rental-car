@@ -35,6 +35,22 @@ const getPosts = async (req, res, next) => {
   }
 };
 
+const getPost = async (req, res, next) => {
+  try {
+    const { slug } = req.params;
+
+    const post = await Post.findOne({ slug }).lean();
+
+    if (!post) {
+      return next(createError(404, 'Post not found.'));
+    }
+
+    res.status(200).json(post);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const createPost = async (req, res, next) => {
   if (!req.user.isAdmin) {
     return next(createError(403, 'You are not allowed to create a post'));
@@ -89,4 +105,4 @@ const deletePost = async (req, res, next) => {
   }
 };
 
-export { getPosts, createPost, updatePost, deletePost };
+export { getPosts, getPost, createPost, updatePost, deletePost };
