@@ -11,6 +11,20 @@ interface ICurrentUser {
   loading: boolean;
 }
 
+interface IPost {
+  _id: string;
+  slug: string;
+  title: string;
+  image: string;
+  content: string;
+  updatedAt: string;
+}
+
+interface IPostData {
+  totalPosts: number;
+  posts: IPost[];
+}
+
 interface IRouteMeta {
   [path: string]: {
     title: string;
