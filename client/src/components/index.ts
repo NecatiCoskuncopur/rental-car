@@ -6,6 +6,7 @@ export { default as ContactDetail } from './Contact/ContactDetail';
 export { default as ContactForm } from './Contact/ContactForm';
 export { default as ContactMap } from './Contact/ContactMap';
 export { default as Container } from './Container';
+export { default as ErrorScreen } from './ErrorScreen';
 export { default as FactsByNumber } from './FactsByNumber';
 export { default as FormGrid } from './FormGrid';
 export { default as InfoPage } from './InfoPage';
