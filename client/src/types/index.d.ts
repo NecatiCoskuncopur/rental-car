@@ -31,3 +31,17 @@ interface IRouteMeta {
     breadcrumb: string[];
   };
 }
+
+interface IUserBooking {
+  _id: string;
+  startDate: string;
+  endDate: string;
+  status: string;
+  totalPrice: number;
+  vehicleId: IVehicle;
+}
+
+interface IUserBookingData {
+  totalBookings: number;
+  bookings: IUserBooking[];
+}

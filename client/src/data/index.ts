@@ -2,6 +2,7 @@ export { default as commonQuestionsData } from './commonQuestionsData';
 export { default as contactDetailData } from './contactDetailData';
 export { default as factsData } from './factsData';
 export { default as footerData } from './footerData';
+export { default as getUserDashboardData } from './getUserDashboardData';
 export { default as headerData } from './headerData';
 export { default as privacyPolicyData } from './privacyPolicyData';
 export { default as shareData } from './shareData';

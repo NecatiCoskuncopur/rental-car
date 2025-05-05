@@ -1,10 +1,13 @@
+export { default as Book } from './Book';
 export { default as Booking } from './Booking';
 export { default as Car } from './Car';
 export { default as Crown } from './Crown';
 export { default as Dashboard } from './Dashboard';
+export { default as Expenses } from './Expenses';
 export { default as Headphone } from './Headphone';
 export { default as Heart } from './Heart';
 export { default as History } from './History';
 export { default as Selection } from './Selection';
 export { default as Settings } from './Settings';
 export { default as UserCheck } from './UserCheck';
+export { default as Wallet } from './Wallet';
