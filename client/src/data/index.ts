@@ -7,4 +7,5 @@ export { default as privacyPolicyData } from './privacyPolicyData';
 export { default as shareData } from './shareData';
 export { default as socialMediaData } from './socialMediaData';
 export { default as termsData } from './termsData';
+export { default as userDashboardHeaderData } from './userDashboardHeaderData';
 export { default as whyChooseUsData } from './whyChooseUsData';
