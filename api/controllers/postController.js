@@ -51,6 +51,29 @@ const getPost = async (req, res, next) => {
   }
 };
 
+const getAdjacentPosts = async (req, res) => {
+  const { slug } = req.params;
+
+  try {
+    const currentPost = await Post.findOne({ slug });
+
+    if (!currentPost) {
+      return next(createError(404, 'Post not found.'));
+    }
+
+    const previousPost = await Post.findOne({ createdAt: { $lt: currentPost.createdAt } }).sort({ createdAt: -1 });
+
+    const nextPost = await Post.findOne({ createdAt: { $gt: currentPost.createdAt } }).sort({ createdAt: 1 });
+
+    res.status(200).json({
+      previousPost,
+      nextPost,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const createPost = async (req, res, next) => {
   if (!req.user.isAdmin) {
     return next(createError(403, 'You are not allowed to create a post'));
@@ -105,4 +128,4 @@ const deletePost = async (req, res, next) => {
   }
 };
 
-export { getPosts, getPost, createPost, updatePost, deletePost };
+export { getPosts, getPost, getAdjacentPosts, createPost, updatePost, deletePost };
