@@ -38,10 +38,18 @@ interface IUserBooking {
   endDate: string;
   status: string;
   totalPrice: number;
-  vehicleId: IVehicle;
+  vehicle: IVehicle;
 }
 
 interface IUserBookingData {
-  totalBookings: number;
   bookings: IUserBooking[];
+  totalBookings: number;
+  perPage: number;
+  totalPages: number;
+  currentPage: number;
+  pageStartIndex: number;
+  hasPrev: boolean;
+  hasNext: boolean;
+  prev: number | null;
+  next: number | null;
 }
