@@ -2,7 +2,7 @@ import { Book, Expenses, Wallet } from '@/icons';
 import theme from '@/theme';
 
 type DashboardDataParams = {
-  totalBookings: number;
+  totalBookings: number | undefined;
   totalSpent: number;
   totalApprovedSpent: number;
 };

@@ -78,6 +78,7 @@ const theme = {
     almostBlack: '#212121',
     extraDarkGray: '#201F1D',
     coolGray: '#DEE2E7',
+    almostWhite: '#FCFCFC',
 
     // Backgrounds & Neutrals
     bgLight: '#F8F9FA',

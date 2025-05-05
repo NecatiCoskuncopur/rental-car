@@ -4,6 +4,7 @@ const routeMeta: IRouteMeta = {
   '/contact': { title: 'Contact Us', breadcrumb: ['Home', 'Contact Us'] },
   '/privacyPolicy': { title: 'Privacy Policy', breadcrumb: ['Home', 'Privacy Policy'] },
   '/terms': { title: 'Terms & Conditions', breadcrumb: ['Home', 'Terms & Conditions'] },
+  '/userDashboard': { title: 'User Dashboard', breadcrumb: ['Home', 'User Dashboard'] },
 };
 
 export default routeMeta;
