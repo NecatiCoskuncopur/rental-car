@@ -17,6 +17,8 @@ export { default as Paginate } from './Paginate';
 export { default as PaginateNextButton } from './PaginateNextButton';
 export { default as PaginatePrevButton } from './PaginatePrevButton';
 export { default as PostCard } from './Post/PostCard';
+export { default as PostDetailContent } from './PostDetail/PostDetailContent';
+export { default as PostDetailFooter } from './PostDetail/PostDetailFooter';
 export { default as ScrollToTopButton } from './ScrollToTopButton';
 export { default as SectionHeading } from './SectionHeading';
 export { default as Share } from './Share';

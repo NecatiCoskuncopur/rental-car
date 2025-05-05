@@ -70,6 +70,7 @@ const ShareWrapper = styled.div`
   margin: ${theme.spacing.$6} 0;
   display: flex;
   align-items: center;
+  width: 100%;
   gap: ${theme.spacing.$3};
   cursor: pointer;
   button {
