@@ -74,6 +74,16 @@ const getAdjacentPosts = async (req, res) => {
   }
 };
 
+const getSlugs = async (req, res, next) => {
+  try {
+    const posts = await Post.find({}, 'slug');
+    const slugs = posts.map((post) => post.slug);
+    res.json(slugs);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const createPost = async (req, res, next) => {
   if (!req.user.isAdmin) {
     return next(createError(403, 'You are not allowed to create a post'));
@@ -128,4 +138,4 @@ const deletePost = async (req, res, next) => {
   }
 };
 
-export { getPosts, getPost, getAdjacentPosts, createPost, updatePost, deletePost };
+export { getPosts, getPost, getAdjacentPosts, getSlugs, createPost, updatePost, deletePost };
