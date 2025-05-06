@@ -18,6 +18,7 @@ export { default as OverlayLoader } from './OverlayLoader';
 export { default as Paginate } from './Paginate';
 export { default as PaginateNextButton } from './PaginateNextButton';
 export { default as PaginatePrevButton } from './PaginatePrevButton';
+export { default as PasswordChange } from './PasswordChange';
 export { default as Profile } from './Profile';
 export { default as PostCard } from './Post/PostCard';
 export { default as PostDetailContent } from './PostDetail/PostDetailContent';
