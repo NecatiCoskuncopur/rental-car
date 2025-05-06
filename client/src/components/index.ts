@@ -24,6 +24,7 @@ export { default as ScrollToTopButton } from './ScrollToTopButton';
 export { default as SectionHeading } from './SectionHeading';
 export { default as Share } from './Share';
 export { default as TopArticle } from './Post/TopArticle';
+export { default as SettingsLayout } from './SettingsLayout';
 export { default as UserBookingDetail } from './UserBookingDetail';
 export { default as UserDashboardHeader } from './UserDashboardHeader';
 export { default as WhyChooseUs } from './WhyChooseUs';

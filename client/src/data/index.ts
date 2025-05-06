@@ -5,6 +5,7 @@ export { default as footerData } from './footerData';
 export { default as getUserDashboardData } from './getUserDashboardData';
 export { default as headerData } from './headerData';
 export { default as privacyPolicyData } from './privacyPolicyData';
+export { default as settingsMenuData } from './settingsMenuData';
 export { default as shareData } from './shareData';
 export { default as socialMediaData } from './socialMediaData';
 export { default as termsData } from './termsData';
