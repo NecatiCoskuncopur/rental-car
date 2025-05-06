@@ -4,6 +4,7 @@ const routeMeta: IRouteMeta = {
   '/contact': { title: 'Contact Us', breadcrumb: ['Home', 'Contact Us'] },
   '/privacyPolicy': { title: 'Privacy Policy', breadcrumb: ['Home', 'Privacy Policy'] },
   '/settings': { title: 'Profile', breadcrumb: ['Home', 'Profile'] },
+  '/settings/notifications': { title: 'Notifications', breadcrumb: ['Home', 'Notifications'] },
   '/settings/preferences': { title: 'Preferences', breadcrumb: ['Home', 'Preferences'] },
   '/settings/security': { title: 'Security', breadcrumb: ['Home', 'Security'] },
   '/terms': { title: 'Terms & Conditions', breadcrumb: ['Home', 'Terms & Conditions'] },
