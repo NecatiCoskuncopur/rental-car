@@ -105,10 +105,8 @@ const StyledContainer = styled(Container)`
 
 const Wrapper = styled.div`
   background-color: ${theme.colors.white};
-  position: absolute;
-  bottom: -60px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  margin: -${theme.spacing.$10} auto auto;
   border-radius: 10px;
   padding: ${theme.spacing.$7};
   width: 75%;
@@ -119,7 +117,7 @@ const Wrapper = styled.div`
 
   @media ${theme.device.laptop} {
     flex-direction: column;
-    bottom: -140px;
+    margin: -${theme.spacing.$15} auto auto;
   }
 
   @media ${theme.device.tablet} {
