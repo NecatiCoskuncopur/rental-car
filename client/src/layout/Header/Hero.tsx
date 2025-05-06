@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import theme from '@/theme';
+import { VehicleSearch } from '@/components';
 
 const Hero = () => {
   const mockImage = 'https://dreamsrent-wp.dreamstechnologies.com/wp-content/uploads/2023/12/banner.jpg';
@@ -9,7 +10,7 @@ const Hero = () => {
   return (
     <Wrapper imageUrl={mockImage}>
       <div style={{ height: '400px' }}></div>
-      {/* VehicleSearch */}
+      <VehicleSearch />
     </Wrapper>
   );
 };
