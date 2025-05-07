@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import theme from '@/theme';
 import { useFetchData } from '@/hooks';
 import { Footer, Header } from '@/layout';
-import { Container, ErrorScreen, OfferHeader, OverlayLoader, VehicleFilter } from '@/components';
+import { Container, ErrorScreen, OfferHeader, OverlayLoader, VehicleCard, VehicleFilter } from '@/components';
 
 type FilterState = {
   vehicleTypes: string[];
@@ -111,7 +111,17 @@ const Offer = () => {
                 />
               </NotFound>
             )}
-            <List>{vehiclesData?.vehicles?.map((vehicle) => <div key={vehicle._id}>{vehicle.brand}</div>)}</List>
+            <List>
+              {vehiclesData?.vehicles?.map((vehicle) => (
+                <VehicleCard
+                  key={vehicle._id}
+                  vehicle={vehicle}
+                  view={view}
+                  pickupDate={pickupDate}
+                  returnDate={returnDate}
+                />
+              ))}
+            </List>
           </Wrapper>
         )}
       </Container>
