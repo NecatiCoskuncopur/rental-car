@@ -14,6 +14,7 @@ export { default as FormGrid } from './FormGrid';
 export { default as getUserBookingsColumns } from './Columns/getUserBookingsColumns';
 export { default as InfoPage } from './InfoPage';
 export { default as Loader } from './Loader';
+export { default as OfferHeader } from './OfferHeader';
 export { default as OverlayLoader } from './OverlayLoader';
 export { default as Paginate } from './Paginate';
 export { default as PaginateNextButton } from './PaginateNextButton';
