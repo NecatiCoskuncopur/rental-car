@@ -4,7 +4,7 @@ import { Select } from 'antd';
 import { FiGrid, FiList } from 'react-icons/fi';
 
 import theme from '@/theme';
-import Container from './Container';
+import Container from '../Container';
 
 type OfferHeaderProps = {
   totalVehicles: number | undefined;

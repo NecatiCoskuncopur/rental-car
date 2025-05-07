@@ -53,3 +53,32 @@ interface IUserBookingData {
   prev: number | null;
   next: number | null;
 }
+
+interface IVehicle {
+  _id: string;
+  brand: string;
+  model: string;
+  price: number;
+  image: string;
+  vehicleType: 'sedan' | 'suv' | 'van' | 'station vagon' | 'mpv';
+  doors: 2 | 3 | 4 | 5;
+  passengers: 5 | 7 | 8 | 12;
+  transmissionType: 'automatic' | 'manual';
+  fuelType: 'gasoline' | 'diesel' | 'electric' | 'hybrid';
+  minAge: 21 | 24 | 27 | 30;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface IVehicleData {
+  vehicles: IVehicle[];
+  totalVehicles: number;
+  perPage: number;
+  totalPages: number;
+  currentPage: number;
+  pageStartIndex: number;
+  hasPrev: boolean;
+  hasNext: boolean;
+  prev: number | null;
+  next: number | null;
+}
