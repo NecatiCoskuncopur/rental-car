@@ -31,5 +31,6 @@ export { default as TopArticle } from './Post/TopArticle';
 export { default as SettingsLayout } from './SettingsLayout';
 export { default as UserBookingDetail } from './UserBookingDetail';
 export { default as UserDashboardHeader } from './UserDashboardHeader';
+export { default as VehicleFilter } from './VehicleFilter';
 export { default as VehicleSearch } from './VehicleSearch';
 export { default as WhyChooseUs } from './WhyChooseUs';
