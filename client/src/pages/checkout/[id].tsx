@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import theme from '@/theme';
 import { RootState } from '@/redux/store';
 import { Footer, Header } from '@/layout';
-import { CheckoutForm, Container, OverlayLoader } from '@/components';
+import { CheckoutForm, Container, OrderDetail, OverlayLoader } from '@/components';
 
 const Checkout = () => {
   const router = useRouter();
@@ -91,7 +91,13 @@ const Checkout = () => {
         <FormWrapper>
           <CheckoutForm formRef={formRef} />
         </FormWrapper>
-        <Aside>Aside</Aside>
+        <Aside>
+          <OrderDetail
+            pickupDate={pickupDate}
+            returnDate={returnDate}
+            vehicle={vehicle}
+          />
+        </Aside>
       </FlexContainer>
     </Form>
   );

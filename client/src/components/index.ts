@@ -16,6 +16,7 @@ export { default as getUserBookingsColumns } from './Columns/getUserBookingsColu
 export { default as InfoPage } from './InfoPage';
 export { default as Loader } from './Loader';
 export { default as OfferHeader } from './Offer/OfferHeader';
+export { default as OrderDetail } from './OrderDetail';
 export { default as OverlayLoader } from './OverlayLoader';
 export { default as Paginate } from './Paginate';
 export { default as PaginateNextButton } from './PaginateNextButton';
