@@ -117,6 +117,19 @@ const getVehicles = async (req, res, next) => {
   }
 };
 
+const getVehicle = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const vehicle = await Vehicle.findById(id);
+    if (!vehicle) {
+      return next(createError(404, 'Vehicle not found.'));
+    }
+    res.status(200).json(vehicle);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const createVehicle = async (req, res, next) => {
   if (!req.user.isAdmin) {
     return next(createError(403, 'You are not allowed to create a vehicle'));
@@ -178,4 +191,4 @@ const deleteVehicle = async (req, res, next) => {
   }
 };
 
-export { getVehicles, createVehicle, updateVehicle, deleteVehicle };
+export { getVehicles, getVehicle, createVehicle, updateVehicle, deleteVehicle };
