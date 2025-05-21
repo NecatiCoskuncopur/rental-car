@@ -1,20 +1,21 @@
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import { Form } from 'antd';
+import { toast } from 'react-toastify';
 
 import theme from '@/theme';
-import { Container, OverlayLoader } from '@/components';
-import { Footer, Header } from '@/layout';
-import { Form } from 'antd';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import { RootState } from '@/redux/store';
-import { useSelector } from 'react-redux';
+import { Footer, Header } from '@/layout';
+import { CheckoutForm, Container, OverlayLoader } from '@/components';
 
 const Checkout = () => {
   const router = useRouter();
   const { currentUser } = useSelector((state: RootState) => state.user);
   const { pickupDate, returnDate, id } = router.query;
   const [form] = Form.useForm();
+  const formRef = useRef(form);
   const [vehicle, setVehicle] = useState<IVehicle | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -64,6 +65,16 @@ const Checkout = () => {
     }
   };
 
+  useEffect(() => {
+    if (currentUser) {
+      form.setFieldsValue({
+        name: currentUser.name,
+        surname: currentUser.surname,
+        email: currentUser.email,
+      });
+    }
+  }, [currentUser, form]);
+
   if (loading) return <OverlayLoader variant="rightAside" />;
 
   return (
@@ -72,11 +83,14 @@ const Checkout = () => {
       name="checkout"
       initialValues={{ remember: true }}
       layout="vertical"
+      ref={formRef}
       onFinish={handleFinish}
       autoComplete="off"
     >
       <FlexContainer>
-        <FormWrapper>form</FormWrapper>
+        <FormWrapper>
+          <CheckoutForm formRef={formRef} />
+        </FormWrapper>
         <Aside>Aside</Aside>
       </FlexContainer>
     </Form>
