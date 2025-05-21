@@ -59,7 +59,7 @@ const Checkout = () => {
 
       const data = await res.json();
       toast.success('Booking successfully created');
-      router.push('/userBookings');
+      router.push('/bookingSuccess');
     } catch (error) {
       toast.error(`Error creating booking: ${error}`);
     }
