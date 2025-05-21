@@ -10,7 +10,7 @@ const Banner = () => {
   const router = useRouter();
   const { asPath } = router;
 
-  const meta = routeMeta[asPath] || routeMeta['/blog/[slug]'] || { title: 'Blog Detail', breadcrumb: ['Home', 'Blog', 'Blog Detail'] };
+  const meta = routeMeta[router.pathname] || { title: 'Page', breadcrumb: ['Home', 'Page'] };
 
   const generateBreadcrumbPaths = () => {
     if (!asPath) return [];

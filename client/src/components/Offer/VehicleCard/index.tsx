@@ -33,7 +33,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, view, pickupDate, re
   const handleBooking = () => {
     if (!pickupDate || !returnDate) return;
     router.push({
-      pathname: `/booking/${vehicle._id}`,
+      pathname: `/checkout/${vehicle._id}`,
       query: {
         pickupDate: String(pickupDate),
         returnDate: String(returnDate),
