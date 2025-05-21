@@ -23,19 +23,31 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, view, pickupDate, re
   const { currentUser } = useSelector((state: RootState) => state.user);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const closeModal = () => setIsModalOpen(false);
 
   const handleLoginRedirect = () => {
     closeModal();
     router.push('/login');
   };
 
+  const handleBooking = () => {
+    if (!pickupDate || !returnDate) return;
+    router.push({
+      pathname: `/booking/${vehicle._id}`,
+      query: {
+        pickupDate: String(pickupDate),
+        returnDate: String(returnDate),
+      },
+    });
+  };
+
+  const showModal = () => {
+    if (currentUser) {
+      handleBooking();
+    } else {
+      setIsModalOpen(true);
+    }
+  };
   return (
     <>
       <ListItem view={view}>
@@ -61,13 +73,6 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, view, pickupDate, re
           />
         )}
       </ListItem>
-
-      {/* {currentUser && isModalOpen && (
-        <BookingForm
-          vehicle={vehicle}
-          closeModal={closeModal}
-        />
-      )} */}
       {!currentUser && isModalOpen && (
         <Modal
           title="You need to log in to make a reservation."
