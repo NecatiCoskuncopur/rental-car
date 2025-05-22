@@ -1,3 +1,4 @@
+export { default as adminNavData } from './adminNavData';
 export { default as commonQuestionsData } from './commonQuestionsData';
 export { default as contactDetailData } from './contactDetailData';
 export { default as factsData } from './factsData';
