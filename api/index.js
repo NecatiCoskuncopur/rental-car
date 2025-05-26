@@ -10,6 +10,7 @@ import bookingRoute from './routes/bookingRoute.js';
 import incomeRoute from './routes/incomeRoute.js';
 import postRoute from './routes/postRoute.js';
 import userRoute from './routes/userRoute.js';
+import uploadRoute from './routes/uploadRoute.js';
 import vehicleRoute from './routes/vehicleRoute.js';
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/api/booking', bookingRoute);
 app.use('/api/income', incomeRoute);
 app.use('/api/post', postRoute);
 app.use('/api/user', userRoute);
+app.use('/api/upload', uploadRoute);
 app.use('/api/vehicle', vehicleRoute);
 
 app.use(errorHandler);
