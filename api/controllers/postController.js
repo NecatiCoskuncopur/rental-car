@@ -1,5 +1,6 @@
 import Post from '../models/postModel.js';
 import { createError } from '../utils/createError.js';
+import { deleteImageFromStorage } from '../utils/deleteImageFromStorage.js';
 import { pickAllowedKeys } from '../utils/pickAllowedKeys.js';
 
 const getPosts = async (req, res, next) => {
@@ -113,12 +114,22 @@ const updatePost = async (req, res, next) => {
   const allowedUpdates = ['title', 'content', 'image'];
   const updates = pickAllowedKeys(req.body, allowedUpdates);
 
-  if (!req.body.image) {
-    delete updates.image;
-  }
-
   try {
+    const post = await Post.findById(req.params.postId);
+    if (!post) {
+      return next(createError(404, 'Post not found'));
+    }
+
+    if (req.body.image && req.body.image !== post.image) {
+      await deleteImageFromStorage(post.image);
+    }
+
+    if (!req.body.image) {
+      delete updates.image;
+    }
+
     const updatedPost = await Post.findByIdAndUpdate(req.params.postId, { $set: updates }, { new: true, runValidators: true });
+
     res.status(200).json(updatedPost);
   } catch (error) {
     next(error);
@@ -131,6 +142,15 @@ const deletePost = async (req, res, next) => {
   }
 
   try {
+    const post = await Post.findById(req.params.postId);
+    if (!post) {
+      return next(createError(404, 'Post not found'));
+    }
+
+    if (post.image) {
+      await deleteImageFromStorage(post.image);
+    }
+
     await Post.findByIdAndDelete(req.params.postId);
     res.status(200).json('The post has been deleted');
   } catch (error) {

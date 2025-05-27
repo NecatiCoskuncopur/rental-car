@@ -1,5 +1,6 @@
 import Vehicle from '../models/vehicleModel.js';
 import { createError } from '../utils/createError.js';
+import { deleteImageFromStorage } from '../utils/deleteImageFromStorage.js';
 import { pickAllowedKeys } from '../utils/pickAllowedKeys.js';
 
 const getVehicles = async (req, res, next) => {
@@ -166,12 +167,22 @@ const updateVehicle = async (req, res, next) => {
   const allowedUpdates = ['brand', 'model', 'price', 'image', 'vehicleType', 'doors', 'passengers', 'transmissionType', 'fuelType', 'minAge'];
   const updates = pickAllowedKeys(req.body, allowedUpdates);
 
-  if (!req.body.image) {
-    delete updates.image;
-  }
-
   try {
+    const vehicle = await Vehicle.findById(req.params.vehicleId);
+    if (!vehicle) {
+      return next(createError(404, 'Vehicle not found'));
+    }
+
+    if (req.body.image && req.body.image !== vehicle.image) {
+      await deleteImageFromStorage(vehicle.image);
+    }
+
+    if (!req.body.image) {
+      delete updates.image;
+    }
+
     const updatedVehicle = await Vehicle.findByIdAndUpdate(req.params.vehicleId, { $set: updates }, { new: true, runValidators: true, context: 'query' });
+
     res.status(200).json(updatedVehicle);
   } catch (error) {
     next(error);
@@ -184,6 +195,15 @@ const deleteVehicle = async (req, res, next) => {
   }
 
   try {
+    const vehicle = await Vehicle.findById(req.params.vehicleId);
+    if (!vehicle) {
+      return next(createError(404, 'Vehicle not found'));
+    }
+
+    if (vehicle.image) {
+      await deleteImageFromStorage(vehicle.image);
+    }
+
     await Vehicle.findByIdAndDelete(req.params.vehicleId);
     res.status(200).json('The vehicle has been deleted');
   } catch (error) {
