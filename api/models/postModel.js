@@ -20,10 +20,6 @@ const postSchema = new mongoose.Schema(
     content: {
       type: String,
       required: [true, 'Content is required'],
-      validate: {
-        validator: (value) => /^[a-zA-Z0-9çÇğĞıİöÖşŞüÜ\s.,!?;:()'"-]+$/.test(value),
-        message: 'Content can only contain letters, numbers, punctuation, and spaces',
-      },
     },
     image: {
       type: String,

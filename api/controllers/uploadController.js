@@ -29,6 +29,7 @@ const uploadImage = async (req, res, next) => {
     });
 
     stream.on('finish', async () => {
+      await file.makePublic();
       const publicUrl = `https://storage.googleapis.com/${bucket.name}/${file.name}`;
       return res.status(200).json({ imageUrl: publicUrl });
     });

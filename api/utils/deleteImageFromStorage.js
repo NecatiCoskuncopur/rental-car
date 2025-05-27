@@ -2,14 +2,27 @@ import { getStorage } from 'firebase-admin/storage';
 
 export const deleteImageFromStorage = async (imageUrl) => {
   try {
-    const bucket = getStorage().bucket();
+    const regex = /https:\/\/storage\.googleapis\.com\/[^\/]+\/(.+)/;
+    const match = imageUrl.match(regex);
 
-    const decodedUrl = decodeURIComponent(imageUrl.split('/o/')[1].split('?')[0]);
-    const file = bucket.file(decodedUrl);
+    if (!match || !match[1]) {
+      throw new Error('File path could not be extracted from the URL.');
+    }
+
+    const decodedPath = decodeURIComponent(match[1]);
+    const bucket = getStorage().bucket();
+    const file = bucket.file(decodedPath);
+
+    const [exists] = await file.exists();
+    if (!exists) {
+      console.warn('File not found:', decodedPath);
+      return;
+    }
 
     await file.delete();
+    console.log('File successfully deleted:', decodedPath);
   } catch (error) {
-    console.error('Error deleting image from Firebase Storage:', error);
-    throw new Error('Failed to delete image from Firebase Storage');
+    console.error('Firebase Storage file deletion error:', error);
+    throw new Error('Firebase Storage file deletion failed: ' + error.message);
   }
 };
