@@ -17,12 +17,21 @@ interface IPost {
   title: string;
   image: string;
   content: string;
+  createdAt: Date;
   updatedAt: string;
 }
 
 interface IPostData {
-  totalPosts: number;
   posts: IPost[];
+  totalPosts: number;
+  perPage: number;
+  totalPages: number;
+  currentPage: number;
+  pageStartIndex: number;
+  hasPrev: boolean;
+  hasNext: boolean;
+  prev: number | null;
+  next: number | null;
 }
 
 interface IUser {
