@@ -25,6 +25,30 @@ interface IPostData {
   posts: IPost[];
 }
 
+interface IUser {
+  _id: string;
+  name: string;
+  surname: string;
+  email: string;
+  dateofBirth: string;
+  isAdmin: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface IUserData {
+  users: IUser[];
+  totalUsers: number;
+  perPage: number;
+  totalPages: number;
+  currentPage: number;
+  pageStartIndex: number;
+  hasPrev: boolean;
+  hasNext: boolean;
+  prev: number | null;
+  next: number | null;
+}
+
 interface IRouteMeta {
   [path: string]: {
     title: string;
