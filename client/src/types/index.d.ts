@@ -115,3 +115,26 @@ interface IVehicleData {
   prev: number | null;
   next: number | null;
 }
+
+interface IBooking {
+  _id: string;
+  startDate: string;
+  endDate: string;
+  status: string;
+  totalPrice: number;
+  vehicle: IVehicle;
+  user: IUser;
+}
+
+interface IBookingData {
+  bookings: IBooking[];
+  totalBookings: number;
+  perPage: number;
+  totalPages: number;
+  currentPage: number;
+  pageStartIndex: number;
+  hasPrev: boolean;
+  hasNext: boolean;
+  prev: number | null;
+  next: number | null;
+}
