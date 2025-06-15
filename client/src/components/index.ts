@@ -42,6 +42,7 @@ export { default as UserBookingDetail } from './UserBookingDetail';
 export { default as UserColumns } from './Admin/Columns/UserColumns';
 export { default as UserDashboardHeader } from './UserDashboardHeader';
 export { default as VehicleCard } from './Offer/VehicleCard';
+export { default as VehicleColumns } from './Admin/Columns/VehicleColumns';
 export { default as VehicleFilter } from './Offer/VehicleFilter';
 export { default as VehicleSearch } from './VehicleSearch';
 export { default as WhyChooseUs } from './WhyChooseUs';
