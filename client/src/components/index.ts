@@ -1,4 +1,5 @@
 export { default as AboutIntro } from './AboutIntro';
+export { default as AdminDashboardMain } from './Admin/AdminDashBoardMain';
 export { default as AuthFormWrapper } from './AuthFormWrapper';
 export { default as BookingColumns } from './Admin/Columns/BookingColumns';
 export { default as BookingDetail } from './Admin/BookingDetail';

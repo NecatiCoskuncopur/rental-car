@@ -138,3 +138,8 @@ interface IBookingData {
   prev: number | null;
   next: number | null;
 }
+
+interface IIncome {
+  _id: string;
+  totalIncome: number;
+}
