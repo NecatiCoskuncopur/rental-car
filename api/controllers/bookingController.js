@@ -87,6 +87,15 @@ const createBooking = async (req, res, next) => {
     });
 
     const savedBooking = await newBooking.save();
+
+    res.cookie('bookingSuccessAllowed', 'true', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 1000 * 60 * 1,
+      sameSite: 'lax',
+      path: '/',
+    });
+
     res.status(201).json(savedBooking);
   } catch (error) {
     next(error);

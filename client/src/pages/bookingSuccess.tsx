@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
@@ -8,6 +8,10 @@ import { Button } from '@/components';
 
 const BookingSuccess = () => {
   const router = useRouter();
+
+  useEffect(() => {
+    document.cookie = 'bookingSuccessAllowed=; Max-Age=0; path=/';
+  }, []);
 
   return (
     <Wrapper>
