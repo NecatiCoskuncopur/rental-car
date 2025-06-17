@@ -6,12 +6,13 @@ import theme from '@/theme';
 import UserMenu from './UserMenu';
 import MobileNavbar from './MobileNavbar';
 import DesktopNavbar from './DesktopNavbar';
+import { Logo } from '@/components';
 
 const Navbar = () => {
   const isMobile = useMediaQuery({ query: theme.device.laptop });
   return (
     <Wrapper>
-      Logo
+      <Logo />
       {isMobile ? (
         <MobileNavbar />
       ) : (

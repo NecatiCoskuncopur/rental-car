@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import { Typography } from 'antd';
 
 import theme from '@/theme';
+import Logo from './Logo';
 
 const { Link } = Typography;
 
@@ -17,7 +18,9 @@ const AuthFormWrapper: React.FC<AuthFormProps> = ({ children }) => {
 
   return (
     <Wrapper>
-      <LogoWrapper>logo</LogoWrapper>
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
       {children}
       <FormFooter isLogin={isLogin}>
         {isLogin ? (

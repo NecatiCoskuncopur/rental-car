@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { IoClose } from 'react-icons/io5';
 
 import theme from '@/theme';
+import { Logo } from '@/components';
 
 type ModalProps = {
   children: React.ReactNode;
@@ -29,7 +30,7 @@ const Modal: React.FC<ModalProps> = ({ children, closeModal }) => {
             size={24}
             onClick={closeModal}
           />
-          Logo
+          <Logo />
         </ModalHeader>
         {children}
       </ContentWrapper>
