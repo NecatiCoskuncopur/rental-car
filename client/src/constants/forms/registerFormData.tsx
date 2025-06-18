@@ -32,20 +32,20 @@ const registerFormData = (form: FormInstance) => [
     label: 'Email',
     name: 'email' as const,
     rules: emailValidations(form),
-    children: <Input />,
+    children: <Input autoComplete="email" />,
   },
   {
     label: 'Password',
     name: 'password' as const,
     rules: passwordValidations,
-    children: <Input.Password />,
+    children: <Input.Password autoComplete="new-password" />,
   },
   {
     label: 'Confirm Password',
     name: 'confirmPassword' as const,
     rules: passwordConfirmValidations(form),
     dependencies: ['password'],
-    children: <Input.Password />,
+    children: <Input.Password autoComplete="new-password" />,
   },
 ];
 

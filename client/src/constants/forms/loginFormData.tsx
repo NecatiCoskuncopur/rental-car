@@ -7,13 +7,13 @@ const loginFormData = (form: FormInstance) => [
     label: 'Email',
     name: 'email' as const,
     rules: emailValidations(form),
-    children: <Input />,
+    children: <Input autoComplete="email" />,
   },
   {
     label: 'Password',
     name: 'password' as const,
     rules: [{ required: true, message: 'Password is required' }],
-    children: <Input.Password />,
+    children: <Input.Password autoComplete="current-password" />,
   },
 ];
 

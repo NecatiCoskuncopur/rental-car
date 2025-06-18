@@ -48,7 +48,7 @@ const PasswordChange: React.FC<PasswordChangeProps> = ({ handleClose, isModalVis
   return (
     <Modal
       title="Change Password"
-      visible={isModalVisible}
+      open={isModalVisible}
       onCancel={handleClose}
       onOk={handlePasswordChange}
       okText="Change Password"
@@ -59,11 +59,21 @@ const PasswordChange: React.FC<PasswordChangeProps> = ({ handleClose, isModalVis
         name="change_password"
       >
         <Form.Item
+          name="username"
+          hidden
+          initialValue={currentUser?.email || ''}
+        >
+          <Input autoComplete="username" />
+        </Form.Item>
+        <Form.Item
           name="oldPassword"
           label="Current Password"
           rules={[{ required: true, message: 'Please enter your current password!' }]}
         >
-          <Input.Password placeholder="Enter your current password" />
+          <Input.Password
+            placeholder="Enter your current password"
+            autoComplete="current-password"
+          />
         </Form.Item>
 
         <Form.Item
@@ -82,7 +92,10 @@ const PasswordChange: React.FC<PasswordChangeProps> = ({ handleClose, isModalVis
             }),
           ]}
         >
-          <Input.Password placeholder="Enter your new password" />
+          <Input.Password
+            placeholder="Enter your new password"
+            autoComplete="new-password"
+          />
         </Form.Item>
 
         <Form.Item
@@ -101,7 +114,10 @@ const PasswordChange: React.FC<PasswordChangeProps> = ({ handleClose, isModalVis
             }),
           ]}
         >
-          <Input.Password placeholder="Confirm your new password" />
+          <Input.Password
+            placeholder="Confirm your new password"
+            autoComplete="new-password"
+          />
         </Form.Item>
       </Form>
     </Modal>
