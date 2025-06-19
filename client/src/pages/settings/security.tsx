@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Form } from 'antd';
 
+import theme from '@/theme';
 import { Footer, Header } from '@/layout';
 import { Button, DeleteAccount, PasswordChange, SettingsLayout } from '@/components';
-import theme from '@/theme';
 
 const Security = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);

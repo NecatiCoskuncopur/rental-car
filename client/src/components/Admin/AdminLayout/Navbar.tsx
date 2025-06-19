@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
 import theme from '@/theme';
-import Logo from '@/components/Logo';
+import { Logo } from '@/components';
 
 type NavbarProps = {
   navItems: {

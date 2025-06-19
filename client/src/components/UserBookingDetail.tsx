@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
+import theme from '@/theme';
 import { formatDate } from '@/utils';
 import { RootState } from '@/redux/store';
-import theme from '@/theme';
 
 type DetailProps = {
   data: IUserBooking | null;

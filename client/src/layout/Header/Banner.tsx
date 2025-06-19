@@ -59,7 +59,6 @@ const Banner = () => {
 
 export default Banner;
 
-// Styled Components
 const Container = styled.section`
   background-color: ${theme.colors.extraDarkGray};
   padding: ${theme.spacing.$13} 0;

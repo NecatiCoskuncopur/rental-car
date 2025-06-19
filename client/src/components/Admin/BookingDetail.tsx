@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 
-import { formatDate } from '@/utils';
 import theme from '@/theme';
+import { formatDate } from '@/utils';
 
 type BookingDetailProps = {
   data: IBooking | null;

@@ -1,5 +1,6 @@
-import theme from '@/theme';
 import styled, { css } from 'styled-components';
+
+import theme from '@/theme';
 
 const { colors, spacing, typography } = theme;
 

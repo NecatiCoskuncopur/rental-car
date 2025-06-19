@@ -1,5 +1,6 @@
 import { Image, Input, Progress, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+
 import { StyledQuill } from '@/components';
 
 const adminPostForm = (

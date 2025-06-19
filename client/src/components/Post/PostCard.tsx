@@ -4,8 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FiArrowRight } from 'react-icons/fi';
 
-import Button from '../Button';
 import theme from '@/theme';
+import Button from '../Button';
 import ClampedText from '../ClampedText';
 
 type PostCardProps = {

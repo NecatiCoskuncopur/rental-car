@@ -25,7 +25,7 @@ const footerData = [
       },
       {
         text: 'Terms & Conditions',
-        href: '/terms&conditions',
+        href: '/terms',
       },
     ],
   },

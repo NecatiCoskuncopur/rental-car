@@ -1,7 +1,8 @@
-import theme from '@/theme';
-import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
+
+import theme from '@/theme';
 import Container from './Container';
 
 const AboutIntro = () => {

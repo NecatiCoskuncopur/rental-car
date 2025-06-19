@@ -1,5 +1,6 @@
-import theme from '@/theme';
 import { FaEnvelope, FaFacebookF, FaLinkedinIn, FaPinterestP, FaReddit, FaWhatsapp, FaXTwitter } from 'react-icons/fa6';
+
+import theme from '@/theme';
 
 const currentUrl = typeof window !== 'undefined' ? encodeURIComponent(window.location.href) : '';
 

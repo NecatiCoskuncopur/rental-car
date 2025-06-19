@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 
 import theme from '@/theme';
+import { Logo } from '@/components';
 import UserMenu from './UserMenu';
 import MobileNavbar from './MobileNavbar';
 import DesktopNavbar from './DesktopNavbar';
-import { Logo } from '@/components';
 
 const Navbar = () => {
   const isMobile = useMediaQuery({ query: theme.device.laptop });
