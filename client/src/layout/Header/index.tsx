@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { usePathname } from 'next/navigation';
 
@@ -9,10 +9,19 @@ import Banner from './Banner';
 const Header = () => {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
+  const [headerHeight, setHeaderHeight] = useState<number>(0);
+
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+  }, [pathname]);
 
   return (
-    <Wrapper>
-      <Navbar />
+    <Wrapper ref={headerRef}>
+      <Navbar headerHeight={headerHeight} />
       {isHomePage ? <Hero /> : <Banner />}
     </Wrapper>
   );
