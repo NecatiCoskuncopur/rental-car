@@ -57,6 +57,13 @@ interface IPostData extends IPaginationMeta {
   totalPosts: number;
 }
 
+interface IRouteMeta {
+  [path: string]: {
+    title: string;
+    breadcrumb: string[];
+  };
+}
+
 interface IUser {
   _id: string;
   name: string;

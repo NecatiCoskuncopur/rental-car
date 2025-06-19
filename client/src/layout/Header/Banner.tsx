@@ -10,7 +10,10 @@ const Banner = () => {
   const router = useRouter();
   const { asPath } = router;
 
-  const meta = routeMeta[router.pathname] || { title: 'Page', breadcrumb: ['Home', 'Page'] };
+  const meta = routeMeta[router.pathname] || {
+    title: 'Page',
+    breadcrumb: ['Home', 'Page'],
+  };
 
   const generateBreadcrumbPaths = () => {
     if (!asPath) return [];
@@ -31,20 +34,19 @@ const Banner = () => {
       <Nav>
         {meta.breadcrumb.map((label, index) => {
           const isLast = index === meta.breadcrumb.length - 1;
-          const href = breadcrumbPaths[index];
+          const href = breadcrumbPaths[index] || '/';
 
           return (
             <React.Fragment key={index}>
               {isLast ? (
-                <BreadcrumbItem as="span">{label}</BreadcrumbItem>
+                <CurrentBreadcrumb>{label}</CurrentBreadcrumb>
               ) : (
-                <Link
+                <BreadcrumbLink
                   href={href}
                   passHref
-                  legacyBehavior
                 >
-                  <BreadcrumbItem as="a">{label}</BreadcrumbItem>
-                </Link>
+                  {label}
+                </BreadcrumbLink>
               )}
               {!isLast && <Slash>/</Slash>}
             </React.Fragment>
@@ -78,18 +80,18 @@ const Nav = styled.nav`
   color: ${theme.colors.white};
 `;
 
-const BreadcrumbItem = styled.div`
+const BreadcrumbLink = styled(Link)`
   cursor: pointer;
-  &:last-child {
-    color: ${theme.colors.yellow};
-    cursor: default;
+  color: ${theme.colors.white};
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
   }
+`;
 
-  &:not(:last-child) {
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+const CurrentBreadcrumb = styled.span`
+  cursor: default;
+  color: ${theme.colors.yellow};
 `;
 
 const Slash = styled.span`
