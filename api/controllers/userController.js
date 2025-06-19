@@ -81,7 +81,7 @@ const updateUser = async (req, res, next) => {
   }
 
   if (req.body.password) {
-    const user = await User.findById(req.params.userId);
+    const user = await User.findById(req.params.userId).select('+password');
     if (!user) {
       return next(createError(404, 'User not found'));
     }
