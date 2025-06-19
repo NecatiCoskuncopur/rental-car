@@ -1,10 +1,10 @@
 import cron from 'node-cron';
 import Booking from '../models/bookingModel.js';
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('0 21 * * *', async () => {
   try {
     const now = new Date();
-    const turkeyNow = new Date(now.getTime() + 3 * 60 * 60 * 1000); // UTC+3 farkı
+    const turkeyNow = new Date(now.getTime() + 3 * 60 * 60 * 1000);
 
     const bookings = await Booking.find({
       status: 'pending',
