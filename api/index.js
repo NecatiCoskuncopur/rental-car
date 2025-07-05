@@ -30,6 +30,10 @@ app.use('/api/vehicle', vehicleRoute);
 
 app.use(errorHandler);
 
+app.get('/health', (_, res) => {
+  res.status(200).send();
+});
+
 app.listen(config.port, () => {
   console.log(`Server running on port ${config.port}`);
 });
