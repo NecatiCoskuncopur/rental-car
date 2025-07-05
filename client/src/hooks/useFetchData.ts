@@ -22,7 +22,7 @@ const useFetchData = <T>(endpoint: string | null) => {
     setState({ data: null, loading: true, error: null });
 
     try {
-      const response = await fetch(`https://rental-car-7mor.onrender.com` + endpoint);
+      const response = await fetch(`https://rental-car-7mor.onrender.com` + endpoint, { credentials: 'include' });
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }
