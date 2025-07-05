@@ -1,8 +1,6 @@
 const nextConfig = {
   reactStrictMode: true,
-  devIndicators: {
-    buildActivity: false,
-  },
+
   compiler: {
     styledComponents: true,
   },
@@ -33,7 +31,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:5000/api/:path*',
+        destination: 'https://rental-car-7mor.onrender.com/api/:path*',
       },
     ];
   },
