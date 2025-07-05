@@ -90,7 +90,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
           nextPost: adjacentPosts?.nextPost || null,
         },
       },
-      revalidate: 60,
     };
   } catch (error) {
     return { notFound: true };

@@ -1,10 +1,11 @@
 const nextConfig = {
   reactStrictMode: true,
-
+  output: 'export',
   compiler: {
     styledComponents: true,
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -26,15 +27,6 @@ const nextConfig = {
     'rc-table',
     'rc-input',
   ],
-
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'https://rental-car-7mor.onrender.com/api/:path*',
-      },
-    ];
-  },
 };
 
 export default nextConfig;
