@@ -1,6 +1,7 @@
 import './cron/autoCancelBookings.js';
 import express from 'express';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 import { db } from './config/db.js';
 import { config } from './config/config.js';
@@ -14,6 +15,14 @@ import uploadRoute from './routes/uploadRoute.js';
 import vehicleRoute from './routes/vehicleRoute.js';
 
 const app = express();
+
+app.use(
+  cors({
+    origin: 'https://rental-car-fe.onrender.com',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS', 'HEAD'],
+    credentials: true,
+  })
+);
 
 app.use(express.json({ limit: '2mb' }));
 app.use(cookieParser());
