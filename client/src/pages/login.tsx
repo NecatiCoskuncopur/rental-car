@@ -16,7 +16,7 @@ const Login = () => {
   const handleSubmit: FormProps<{ email: string; password: string }>['onFinish'] = async (values: any) => {
     try {
       dispatch(loginStart());
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/auth/login', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

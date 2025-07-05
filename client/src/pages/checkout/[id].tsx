@@ -47,7 +47,7 @@ const Checkout = () => {
         endDate: returnDate,
       };
 
-      const res = await fetch('/api/booking/createBooking', {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/booking/createBooking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bookingData),

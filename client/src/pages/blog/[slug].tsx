@@ -48,7 +48,7 @@ BlogDetail.getLayout = (page: React.ReactElement) => (
 export default BlogDetail;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${process.env.API_URL}/api/post/getSlugs`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/post/getSlugs`);
   const slugs: string[] = await res.json();
 
   const paths = slugs.map((slug) => ({
@@ -68,9 +68,9 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 
   try {
     const [postRes, postsRes, adjacentRes] = await Promise.all([
-      fetch(`${process.env.API_URL}/api/post/getPost/${slug}`),
-      fetch(`${process.env.API_URL}/api/post/getPosts`),
-      fetch(`${process.env.API_URL}/api/post/getAdjacentPosts/${slug}`),
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/post/getPost/${slug}`),
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/post/getPosts`),
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/post/getAdjacentPosts/${slug}`),
     ]);
 
     const post = await postRes.json();
