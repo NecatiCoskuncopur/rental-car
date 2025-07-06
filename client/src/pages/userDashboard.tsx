@@ -10,7 +10,7 @@ import { getUserDashboardData } from '@/data';
 import { Container, ErrorScreen, OverlayLoader, UserDashboardHeader } from '@/components';
 
 const UserDashboard = () => {
-  const { data, loading: bookingLoading, error: bookingError } = useFetchData<IUserBookingData>(`api/user/getUser/bookings`);
+  const { data, loading: bookingLoading, error: bookingError } = useFetchData<IUserBookingData>(`/api/user/getUser/bookings`);
 
   const totalSpent = data?.bookings?.reduce((acc, booking) => acc + (booking.totalPrice || 0), 0) || 0;
 
