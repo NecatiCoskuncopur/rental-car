@@ -43,7 +43,7 @@ const login = async (req, res, next) => {
     const token = jwt.sign({ id: validUser._id, isAdmin: validUser.isAdmin }, config.jwtSecret);
 
     const { password: pass, ...rest } = validUser._doc;
-    res.status(200).cookie('access_token', token, { httpOnly: true }).json(rest);
+    res.status(200).cookie('access_token', token, { httpOnly: true, sameSite: 'None', secure: true }).json(rest);
   } catch (error) {
     next(error);
   }
